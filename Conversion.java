@@ -31,7 +31,12 @@ public class Conversion{
 
         b.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent arg0) {
-                l.setText( uc.convert(units.get(c1.getSelectedIndex()), Double.valueOf(tf.getText()), units.get(c2.getSelectedIndex())) );
+                if(!tf.getText().isEmpty()){
+                    l.setText( uc.convert(units.get(c1.getSelectedIndex()), Double.valueOf(tf.getText()), units.get(c2.getSelectedIndex())) );
+                } else {
+                    JOptionPane.showMessageDialog(f, "Please enter a value to be converted.", "Enter Value", JOptionPane.WARNING_MESSAGE);
+                }
+
             }
         });
 
