@@ -19,7 +19,7 @@ public class Conversion{
         JComboBox c1 = new JComboBox<>(units.toArray());
         c1.setBounds(135, 5, 100, 30);
         JTextField tf = new JTextField();
-        tf.setBounds(10, 10, 120, 20);
+        tf.setBounds(10, 10, 115, 20);
 
         JComboBox c2 = new JComboBox<>(units.toArray());
         c2.setBounds(135, 45, 100, 30);
@@ -27,7 +27,7 @@ public class Conversion{
         l.setBounds(10, 50, 120, 20);
 
         JButton b = new JButton("Convert");
-        b.setBounds(135, 80, 100, 40);
+        b.setBounds(135, 85, 100, 40);
 
         b.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent arg0) {
@@ -41,7 +41,7 @@ public class Conversion{
         });
 
         JButton sb = new JButton("Swap");
-        sb.setBounds(10, 80, 100, 40);
+        sb.setBounds(10, 85, 115, 40);
 
         sb.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -58,11 +58,21 @@ public class Conversion{
             }
         });
 
+        JButton eb = new JButton("Exit");
+        eb.setBounds(10, 135, 225, 40);
+
+        eb.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
         f.add(c1);  f.add(tf);
         f.add(c2);  f.add(l);
         f.add(b);   f.add(sb);
+        f.add(eb);
 
-        f.setSize(500, 500);
+        f.setSize(260, 225);
         f.setLayout(null);
         f.setVisible(true);
     }
