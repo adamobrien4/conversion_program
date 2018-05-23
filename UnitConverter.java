@@ -1,16 +1,18 @@
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Arrays;
 
 public class UnitConverter{
 
     private final Map<String, Double> conTable = new HashMap<>();
 
-    public UnitConverter(){
-        this.useLengthUnits();
-    }
+    public ArrayList<String> useLengthUnits(){
 
-    public void useLengthUnits(){
+        ArrayList<String> units = new ArrayList<>();
+        units.addAll(Arrays.asList("m", "km", "cm", "mm", "in", "ft", "mile", "yd", "nmile"));
+
         conTable.clear();
         conTable.put("m", 1.0);
         conTable.put("km", .001);
@@ -21,6 +23,8 @@ public class UnitConverter{
         conTable.put("mile", 0.00062137);
         conTable.put("yd", 1.09361);
         conTable.put("nmile", 0.000539957);
+
+        return units;
     }
     
     public String convert(String unit, double val, String rUnit){
