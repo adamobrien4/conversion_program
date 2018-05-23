@@ -35,9 +35,27 @@ public class Conversion{
             }
         });
 
+        JButton sb = new JButton("Swap");
+        sb.setBounds(10, 80, 100, 40);
+
+        sb.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                // Swap currently selected units
+                int t = c1.getSelectedIndex();
+                c1.setSelectedIndex(c2.getSelectedIndex());
+                c2.setSelectedIndex(t);
+
+                // Place value in result label into textfield
+                tf.setText(l.getText());
+                // Recalculate unit by simulating convert button click
+                if(!tf.getText().isEmpty())
+                    b.doClick();
+            }
+        });
+
         f.add(c1);  f.add(tf);
         f.add(c2);  f.add(l);
-        f.add(b);
+        f.add(b);   f.add(sb);
 
         f.setSize(500, 500);
         f.setLayout(null);
