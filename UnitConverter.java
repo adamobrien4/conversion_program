@@ -7,10 +7,10 @@ import java.util.Arrays;
 public class UnitConverter{
 
     private final Map<String, Double> conTable = new HashMap<>();
+    public ArrayList<String> units = new ArrayList<>();
 
-    public ArrayList<String> useLengthUnits(){
-
-        ArrayList<String> units = new ArrayList<>();
+    public void useLengthUnits(){
+        units.clear();
         units.addAll(Arrays.asList("m", "km", "cm", "mm", "in", "ft", "mile", "yd", "nmile"));
 
         conTable.clear();
@@ -23,8 +23,15 @@ public class UnitConverter{
         conTable.put("mile", 0.00062137);
         conTable.put("yd", 1.09361);
         conTable.put("nmile", 0.000539957);
+    }
 
-        return units;
+    public void useVolumeUnits(){
+        units.clear();
+        units.addAll(Arrays.asList("l", "ml"));
+
+        conTable.clear();
+        conTable.put("l", 1.0);
+        conTable.put("ml", 1000.0);
     }
     
     public String convert(String unit, double val, String rUnit){
@@ -36,5 +43,9 @@ public class UnitConverter{
 
     private double convertToMeter(String u, double v){
         return 1 / (conTable.get(u) / v);
+    }
+
+    public UnitConverter(){
+        this.useLengthUnits();
     }
 }

@@ -11,37 +11,70 @@ public class Conversion{
 
     public Conversion(){
 
-        // Setup units
-        units = uc.useLengthUnits();
-
         JFrame f = new JFrame();
 
-        JComboBox c1 = new JComboBox<>(units.toArray());
-        c1.setBounds(135, 5, 100, 30);
-        JTextField tf = new JTextField();
-        tf.setBounds(10, 10, 115, 20);
+        String[] types = {
+            "length", "volume"
+        };
 
-        JComboBox c2 = new JComboBox<>(units.toArray());
-        c2.setBounds(135, 45, 100, 30);
+        JComboBox u = new JComboBox<>(types);
+        u.setBounds(10, 10, 210, 20);
+
+        JComboBox c1 = new JComboBox<>(uc.units.toArray());
+        c1.setBounds(140, 40, 80, 20);
+        JTextField tf = new JTextField();
+        tf.setBounds(10, 40, 120, 20);
+
+        JComboBox c2 = new JComboBox<>(uc.units.toArray());
+        c2.setBounds(140, 70, 80, 20);
         JLabel l = new JLabel();
-        l.setBounds(10, 50, 120, 20);
+        l.setBounds(10, 70, 120, 20);
 
         JButton b = new JButton("Convert");
-        b.setBounds(135, 85, 100, 40);
+        b.setBounds(140, 100, 80, 30);
+
+        JButton sb = new JButton("Swap");
+        sb.setBounds(10, 100, 120, 30);
+
+        JButton eb = new JButton("Exit");
+        eb.setBounds(10, 140, 210, 30);
+
+        u.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                switch(u.getSelectedIndex()){
+                    case 0:
+                        // length
+                        uc.useLengthUnits();
+                        break;
+                    case 1:
+                        // volume
+                        uc.useVolumeUnits();
+                        break;
+                    default:
+                        System.exit(0);
+                }
+
+                String[] units = new String[uc.units.size()];
+                units = uc.units.toArray(units);
+
+                c1.removeAllItems();
+                c2.removeAllItems();
+                for(int i = 0; i < units.length; i++ ){
+                    c1.addItem(units[i]);
+                    c2.addItem(units[i]);
+                }
+            }
+        });
 
         b.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent arg0) {
                 if(!tf.getText().isEmpty()){
-                    l.setText( uc.convert(units.get(c1.getSelectedIndex()), Double.valueOf(tf.getText()), units.get(c2.getSelectedIndex())) );
+                    l.setText( uc.convert(uc.units.get(c1.getSelectedIndex()), Double.valueOf(tf.getText()), uc.units.get(c2.getSelectedIndex())) );
                 } else {
                     JOptionPane.showMessageDialog(f, "Please enter a value to be converted.", "Enter Value", JOptionPane.WARNING_MESSAGE);
                 }
-
             }
         });
-
-        JButton sb = new JButton("Swap");
-        sb.setBounds(10, 85, 115, 40);
 
         sb.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -58,21 +91,19 @@ public class Conversion{
             }
         });
 
-        JButton eb = new JButton("Exit");
-        eb.setBounds(10, 135, 225, 40);
-
         eb.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
 
+        f.add(u);
         f.add(c1);  f.add(tf);
         f.add(c2);  f.add(l);
         f.add(b);   f.add(sb);
         f.add(eb);
 
-        f.setSize(260, 225);
+        f.setSize(245, 215);
         f.setLayout(null);
         f.setVisible(true);
     }
