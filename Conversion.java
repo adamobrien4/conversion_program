@@ -14,7 +14,7 @@ public class Conversion{
         JFrame f = new JFrame();
 
         String[] types = {
-            "length", "volume"
+            "Length", "Area", "Volume", "Speed", "Temperature"
         };
 
         JComboBox u = new JComboBox<>(types);
@@ -47,8 +47,20 @@ public class Conversion{
                         uc.useLengthUnits();
                         break;
                     case 1:
+                        // area
+                        uc.useAreaUnits();
+                        break;
+                    case 2:
                         // volume
                         uc.useVolumeUnits();
+                        break;
+                    case 3:
+                        // speed
+                        uc.useSpeedUnits();
+                        break;
+                    case 4:
+                        // temperature
+                        uc.useTemperatureUnits();
                         break;
                     default:
                         System.exit(0);

@@ -8,30 +8,135 @@ public class UnitConverter{
 
     private final Map<String, Double> conTable = new HashMap<>();
     public ArrayList<String> units = new ArrayList<>();
+    private ArrayList<Double> unitValues = new ArrayList<>();
 
     public void useLengthUnits(){
         units.clear();
-        units.addAll(Arrays.asList("m", "km", "cm", "mm", "in", "ft", "mile", "yd", "nmile"));
+        units.addAll(Arrays.asList(
+            "Meter",
+            "Kilometer",
+            "Centimeter",
+            "Milimeter",
+            "Inch",
+            "Foot",
+            "Mile",
+            "Yard"
+        ));
 
-        conTable.clear();
-        conTable.put("m", 1.0);
-        conTable.put("km", .001);
-        conTable.put("cm", 100.0);
-        conTable.put("mm", 1000.0);
-        conTable.put("in", 39.3701);
-        conTable.put("ft", 3.280842);
-        conTable.put("mile", 0.00062137);
-        conTable.put("yd", 1.09361);
-        conTable.put("nmile", 0.000539957);
+        unitValues.clear();
+        unitValues.addAll(Arrays.asList(
+            1.0,
+            .001,
+            100.0,
+            1000.0,
+            39.3701,
+            3.280842,
+            0.00062137,
+            1.09361
+        ));
+
+        updateConversionTable();
     }
 
     public void useVolumeUnits(){
         units.clear();
-        units.addAll(Arrays.asList("l", "ml"));
+        units.addAll(Arrays.asList(
+            "Litre",
+            "Mililitre",
+            "Gallon",
+            "Pint",
+            "Fluid Ounce",
+            "Tablespoon",
+            "Teaspoon"
+        ));
+
+        unitValues.clear();
+        unitValues.addAll(Arrays.asList(
+            1.0,
+            .001,
+            0.219969,
+            1.75975,
+            35.1951,
+            56.3121,
+            168.936
+        ));
+
+        updateConversionTable();
+    }
+
+    public void useAreaUnits(){
+        units.clear();
+        units.addAll(Arrays.asList(
+            "Square Meter",
+            "Square Kilometer",
+            "Square Mile",
+            "Square Yard",
+            "Square Foot",
+            "Square Inch",
+            "Hectare",
+            "Acre"
+        ));
+
+        unitValues.clear();
+        unitValues.addAll(Arrays.asList(
+            1.0,
+            .001,
+            .0000003861,
+            1.19599,
+            10.7639,
+            1550.0,
+            .0001,
+            0.000247105
+        ));
+
+        updateConversionTable();
+    }
+
+    public void useSpeedUnits(){
+        units.clear();
+        units.addAll(Arrays.asList(
+            "Meters per second",
+            "Miles per hour",
+            "Kilometers per hour",
+            "Knots"
+        ));
+
+        unitValues.clear();
+        unitValues.addAll(Arrays.asList(
+            1.0,
+            2.23694,
+            3.6,
+            1.94384
+        ));
+
+        updateConversionTable();
+    }
+
+    public void useTemperatureUnits(){
+        units.clear();
+        units.addAll(Arrays.asList(
+            "Celcius",
+            "Fahrenheit",
+            "Kelvin"
+        ));
+
+        unitValues.clear();
+        unitValues.addAll(Arrays.asList(
+            1.0,
+            1.8,
+            274.15
+        ));
+
+        updateConversionTable();
+    }
+
+    private void updateConversionTable(){
 
         conTable.clear();
-        conTable.put("l", 1.0);
-        conTable.put("ml", 1000.0);
+        for(int i = 0; i < units.size(); i++){
+            conTable.put(units.get(i), unitValues.get(i));
+        }
+
     }
     
     public String convert(String unit, double val, String rUnit){
