@@ -86,6 +86,10 @@ public class Conversion{
 
         sb.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                if(l.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(f, "Please convert a value before swapping.", "Swap Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
                 // Swap currently selected units
                 int t = c1.getSelectedIndex();
                 c1.setSelectedIndex(c2.getSelectedIndex());
