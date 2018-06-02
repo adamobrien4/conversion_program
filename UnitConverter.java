@@ -112,24 +112,6 @@ public class UnitConverter{
         updateConversionTable();
     }
 
-    public void useTemperatureUnits(){
-        units.clear();
-        units.addAll(Arrays.asList(
-            "Celcius",
-            "Fahrenheit",
-            "Kelvin"
-        ));
-
-        unitValues.clear();
-        unitValues.addAll(Arrays.asList(
-            1.0,
-            1.8,
-            274.15
-        ));
-
-        updateConversionTable();
-    }
-
     private void updateConversionTable(){
 
         conTable.clear();
@@ -140,13 +122,13 @@ public class UnitConverter{
     }
     
     public String convert(String unit, double val, String rUnit){
-        double c = convertToMeter(unit, val);
+        double c = convertToUnit(unit, val);
 
         DecimalFormat df = new DecimalFormat("#.###");
         return df.format(conTable.get(rUnit) * c);
     }
 
-    private double convertToMeter(String u, double v){
+    private double convertToUnit(String u, double v){
         return 1 / (conTable.get(u) / v);
     }
 
